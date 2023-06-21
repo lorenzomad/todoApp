@@ -19,7 +19,7 @@ const DisplayManager = (() => {
             newdiv.appendChild(description_p)
             newdiv.appendChild(priority_p)
 
-            content.appendChild(newdiv)
+            content.replaceChildren(newdiv)
 
         });
     }
