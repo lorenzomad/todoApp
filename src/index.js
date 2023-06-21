@@ -1,12 +1,19 @@
 import { Todo } from "./todo";
 import { TodoManager } from "./todoManager";
+import { DisplayManager } from "./displayManager";
 
-const todo_manager = TodoManager()
+
 
 let first = Todo("fare la spesa")
-
 first.description = 'devo comprare le uova'
 
+let second = Todo('you gotta be kidding bro')
+second.description = 'fatti i cazzi tuoi'
+second.priority = 4
 
-todo_manager.newProject('ciccia')
-todo_manager.addTodo(first, 'ciccia')
+TodoManager.newProject('ciccia')
+TodoManager.addTodo(first, 'ciccia')
+TodoManager.addTodo(second, 'ciccia')
+
+
+DisplayManager.displayList(TodoManager.todoList['ciccia'])

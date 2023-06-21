@@ -1,4 +1,4 @@
-const TodoManager = () => {
+const TodoManager = (() => {
 
     let projects = ['default']
     const todoList = {'default': []}
@@ -32,6 +32,6 @@ const TodoManager = () => {
         
     }
 
-}
+}) ()
 
 export {TodoManager}
