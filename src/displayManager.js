@@ -1,11 +1,15 @@
 const DisplayManager = (() => {
     const displayList = (Todos) => {
+        //displays a given list of todos
         const content = document.querySelector('.content')
 
         Todos.forEach(element => {
 
             const newdiv = document.createElement('div')
             newdiv.classList.add('todo')
+            if (element.status === "closed") {
+                newdiv.classList.add('closed')
+            }
             const title_p = document.createElement('p')
             title_p.textContent = element.title
 
@@ -23,8 +27,6 @@ const DisplayManager = (() => {
 
         });
     }
-
-
     return {displayList}
 }) ()
 
