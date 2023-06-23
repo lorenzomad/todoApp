@@ -35,7 +35,8 @@ const Todo = (title)  => {
         },
         get status() {
             return _status
-        }
+        },
+        closeTodo,
     }
 
 }
