@@ -1,4 +1,4 @@
-import { TodoManager } from "todoManager.js";
+import { TodoManager } from "./todoManager.js";
 
 const DisplayManager = (() => {
     let todoList
