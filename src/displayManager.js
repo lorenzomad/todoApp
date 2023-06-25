@@ -82,8 +82,11 @@ const DisplayManager = (() => {
 
         TodoManager.addTodo(new_todo, project)
 
-        displayList(TodoManager.todoList[project])
-
+        try {
+            displayList(TodoManager.todoList[project])
+        } catch (error) {
+            console.error("project does not exist")
+        }
     }
 
     const createProjectCategory = () => {
