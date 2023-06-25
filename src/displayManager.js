@@ -10,6 +10,8 @@ const DisplayManager = (() => {
     const displayList = (Todos) => {
         //displays a given list of todos
         const content = document.querySelector('.content')
+        content.textContent = ''
+        
 
         Todos.forEach(element => {
 
@@ -31,31 +33,44 @@ const DisplayManager = (() => {
             newdiv.appendChild(description_p)
             newdiv.appendChild(priority_p)
 
-            content.replaceChildren(newdiv)
+            content.appendChild(newdiv)
 
         });
     }
 
     const visualizeDropdown = () => {
-
+        //generates dropdown list + adds event listeners + changes behavior main button
         const dropdownContainer = document.createElement('div')
         dropdownContainer.classList.add('ddcontainer')
 
-        Object.keys(todoList).forEach(project => {
-            const project_div = document.createElement("div")
+        Object.keys(TodoManager.todoList).forEach(project => {
+            const project_div = document.createElement("button")
             project_div.classList.add("dropdown")
             project_div.textContent = project
             project_div.addEventListener('click', () => {
-                displayList(todoList[project])
+                displayList(TodoManager.todoList[project])
             })
             dropdownContainer.appendChild(project_div)
             });
-        const project_button = document.querySelector(".projects")
-        project_button.appendChild(dropdownContainer)
+        const project_nav = document.querySelector(".projects")
+        project_nav.appendChild(dropdownContainer)
+        const project_button = document.querySelector("#projects")
+        project_button.removeEventListener('click', visualizeDropdown)
+        project_button.addEventListener('click', closeDropdown)
         
     }
+
+    const closeDropdown = () => {
+        // clsoe the list of projects and readd event listener
+        const project_button = document.querySelector("#projects")
+        const project_nav = document.querySelector(".projects")
+        project_nav.replaceChildren(project_button)
+        project_button.addEventListener('click', visualizeDropdown)
+    }
+
     const addEvents = () => {
-        const project_button = document.querySelector(".projects")
+        // assigns event listeners to the butotns
+        const project_button = document.querySelector("#projects")
         project_button.addEventListener('click', visualizeDropdown)
 
         const new_button = document.querySelector(".new")

@@ -1,3 +1,4 @@
+//entry point for the app
 import { Todo } from "./todo";
 import { TodoManager } from "./todoManager";
 import { DisplayManager } from "./displayManager";
@@ -15,6 +16,7 @@ TodoManager.newProject('ciccia')
 TodoManager.addTodo(first, 'ciccia')
 TodoManager.addTodo(second, 'ciccia')
 
+console.log(TodoManager.todoList['ciccia'])
 
 DisplayManager.displayList(TodoManager.todoList['ciccia'])
 DisplayManager.addEvents()
