@@ -1,4 +1,5 @@
 import { TodoManager } from "./todoManager.js";
+import { Todo } from "./todo.js";
 
 const DisplayManager = (() => {
     let todoList
@@ -68,12 +69,30 @@ const DisplayManager = (() => {
         project_button.addEventListener('click', visualizeDropdown)
     }
 
+    const todoCreation = () => {
+        //creates a new todo from the console
+        const title = prompt("title of the todo");
+        const description = prompt("description of the prompt");
+        const priority = prompt("value of the priority");
+        const project = prompt("what project?");
+
+        const new_todo = Todo(title)
+        new_todo.description = description
+        new_todo.priority = priority
+
+        TodoManager.addTodo(new_todo, project)
+
+        displayList(TodoManager.todoList[project])
+
+    }
+
     const addEvents = () => {
         // assigns event listeners to the butotns
         const project_button = document.querySelector("#projects")
         project_button.addEventListener('click', visualizeDropdown)
 
-        const new_button = document.querySelector(".new")
+        const newtodo_button = document.querySelector(".new")
+        newtodo_button.addEventListener('click', todoCreation)
     }
 
     return {displayList, addEvents}
