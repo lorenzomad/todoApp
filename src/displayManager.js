@@ -86,13 +86,21 @@ const DisplayManager = (() => {
 
     }
 
+    const createProjectCategory = () => {
+        const project_name = prompt(" what is the name of the project?")
+        TodoManager.newProject(project_name)
+    } 
+
     const addEvents = () => {
         // assigns event listeners to the butotns
         const project_button = document.querySelector("#projects")
         project_button.addEventListener('click', visualizeDropdown)
 
-        const newtodo_button = document.querySelector(".new")
+        const newtodo_button = document.querySelector("#newtodo")
         newtodo_button.addEventListener('click', todoCreation)
+
+        const newproject_button = document.querySelector("#newproject")
+        newproject_button.addEventListener('click', createProjectCategory)
     }
 
     return {displayList, addEvents}
