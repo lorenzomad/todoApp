@@ -1,0 +1,27 @@
+body {
+    background-color: beige;
+}
+
+button {
+    color: green;
+    background-color: blue;   
+    border-radius: 10%;
+}
+
+nav {
+    display: flex;
+}
+
+
+
+nav > div {
+    flex: 1;
+}
+nav > button {
+    flex: 1;
+}
+
+.todo {
+    border-style: dotted;
+    border-color: gray;
+}

@@ -16,7 +16,9 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "css-loader": "^6.8.1",
     "eslint": "^8.43.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "style-loader": "^3.3.3"
   }
 }

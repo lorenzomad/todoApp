@@ -8,12 +8,12 @@ const DisplayManager = (() => {
         todoList = todo_list 
     }
 
-    const displayList = (Todos) => {
+    const displayList = (project) => {
         //displays a given list of todos
         const content = document.querySelector('.content')
         content.textContent = ''
+        const Todos = TodoManager.todoList[project]
         
-
         Todos.forEach(element => {
 
             const newdiv = document.createElement('div')
@@ -37,6 +37,9 @@ const DisplayManager = (() => {
             content.appendChild(newdiv)
 
         });
+
+        const current_project = document.querySelector('#current')
+        current_project.textContent = "Current Project: " + project
     }
 
     const visualizeDropdown = () => {
@@ -49,7 +52,7 @@ const DisplayManager = (() => {
             project_div.classList.add("dropdown")
             project_div.textContent = project
             project_div.addEventListener('click', () => {
-                displayList(TodoManager.todoList[project])
+                displayList(project)
             })
             dropdownContainer.appendChild(project_div)
             });
@@ -83,7 +86,7 @@ const DisplayManager = (() => {
         TodoManager.addTodo(new_todo, project)
 
         try {
-            displayList(TodoManager.todoList[project])
+            displayList(project)
         } catch (error) {
             console.error("project does not exist")
         }
