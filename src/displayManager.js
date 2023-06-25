@@ -1,3 +1,5 @@
+import { TodoManager } from "todoManager.js";
+
 const DisplayManager = (() => {
     const displayList = (Todos) => {
         const content = document.querySelector('.content')
