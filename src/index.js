@@ -17,3 +17,4 @@ TodoManager.addTodo(second, 'ciccia')
 
 
 DisplayManager.displayList(TodoManager.todoList['ciccia'])
+DisplayManager.addEvents()

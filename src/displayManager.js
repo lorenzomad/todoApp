@@ -1,4 +1,10 @@
 const DisplayManager = (() => {
+    let todoList
+    
+    const updateTodoList = (todo_list) => {
+        todoList = todo_list 
+    }
+
     const displayList = (Todos) => {
         //displays a given list of todos
         const content = document.querySelector('.content')
@@ -27,7 +33,33 @@ const DisplayManager = (() => {
 
         });
     }
-    return {displayList}
+
+    const visualizeDropdown = () => {
+
+        const dropdownContainer = document.createElement('div')
+        dropdownContainer.classList.add('ddcontainer')
+
+        Object.keys(todoList).forEach(project => {
+            const project_div = document.createElement("div")
+            project_div.classList.add("dropdown")
+            project_div.textContent = project
+            project_div.addEventListener('click', () => {
+                displayList(todoList[project])
+            })
+            dropdownContainer.appendChild(project_div)
+            });
+        const project_button = document.querySelector(".projects")
+        project_button.appendChild(dropdownContainer)
+        
+    }
+    const addEvents = () => {
+        const project_button = document.querySelector(".projects")
+        project_button.addEventListener('click', visualizeDropdown)
+
+        const new_button = document.querySelector(".new")
+    }
+
+    return {displayList, addEvents}
 }) ()
 
 
