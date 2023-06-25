@@ -1,9 +1,11 @@
 # todoApp
-Todo list web App implemented in javascript 
+
+Todo list web App implemented in javascript
 
 ## todo items
 
 The single todo item will have the following properties:
+
 - title
 - description
 - dueDate - optional
