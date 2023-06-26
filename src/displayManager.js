@@ -63,14 +63,9 @@ const DisplayManager = (() => {
     project_button.addEventListener('click', visualizeDropdown);
   };
 
-  const todoCreation = () => {
-    // creates a new todo from the console
-    const title = prompt('title of the todo');
-    const description = prompt('description of the prompt');
-    const priority = prompt('value of the priority');
-    const project = prompt('what project?');
-
-    const new_todo = Todo(title);
+  const todoCreation = (todo_title, description, priority, project) => {
+    // creates a new todo in the TodoManager from these inputs
+    const new_todo = Todo(todo_title);
     new_todo.description = description;
     new_todo.priority = priority;
 
@@ -83,10 +78,63 @@ const DisplayManager = (() => {
     }
   };
 
-  const createProjectCategory = () => {
-    const project_name = prompt(' what is the name of the project?');
+  const todoForm = () => {
+    // implements form to create a todo
+    const new_todo_form = document.createElement('form')
+    const title_form = document.createElement('input');
+    title_form.type = 'text'
+    title_form.name = "title"
+    const description_form = document.createElement('input');
+    description_form.type = 'text'
+    description_form.name = "description"
+    const priority_form = document.createElement('input');
+    priority_form.type = 'text'
+    priority_form.name = "priority";
+    const project_name_form = document.createElement('input');
+    project_name_form.type = 'text'
+    project_name_form.name = "project_name";
+    const submitForm = document.createElement('input')
+    submitForm.type = 'submit'
+    submitForm.addEventListener('click', () => {
+        todoCreation(title_form.value, 
+            description_form.value, 
+            priority_form.value, 
+            project_name_form.value)
+    })
+    
+    new_todo_form.appendChild(title_form);
+    new_todo_form.appendChild(description_form);
+    new_todo_form.appendChild(priority_form);
+    new_todo_form.appendChild(project_name_form);
+    new_todo_form.appendChild(submitForm)
+     
+    const content = document.querySelector(".content");
+    content.replaceChildren(new_todo_form);
+  }
+
+  const createProjectCategory = (project_name) => {
     TodoManager.newProject(project_name);
+    displayList(project_name);
   };
+
+  const projectCreationForm = () => {
+    // form to create a new project category
+    const new_project_form = document.createElement('form');
+    const project_name_form = document.createElement('input');
+    project_name_form.type = 'text';
+    project_name_form.name = "project_name";
+    const submitForm = document.createElement('input');
+    submitForm.type = 'submit';
+    submitForm.addEventListener('click', () => {
+        createProjectCategory(project_name_form.value);
+    })
+    
+    new_project_form.appendChild(project_name_form);
+    new_project_form.appendChild(submitForm);
+     
+    const content = document.querySelector(".content");
+    content.replaceChildren(new_project_form);
+  }
 
   const addEvents = () => {
     // assigns event listeners to the butotns
@@ -94,10 +142,10 @@ const DisplayManager = (() => {
     project_button.addEventListener('click', visualizeDropdown);
 
     const newtodo_button = document.querySelector('#newtodo');
-    newtodo_button.addEventListener('click', todoCreation);
+    newtodo_button.addEventListener('click', todoForm);
 
     const newproject_button = document.querySelector('#newproject');
-    newproject_button.addEventListener('click', createProjectCategory);
+    newproject_button.addEventListener('click', projectCreationForm);
   };
 
   return { displayList, addEvents };
